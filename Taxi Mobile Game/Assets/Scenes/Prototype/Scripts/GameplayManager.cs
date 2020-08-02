@@ -7,6 +7,7 @@ public class GameplayManager : MonoBehaviour
     [Header("Configuration")]
     public GameObject needTaxiIndicator;
     public GameObject mustDriveHereIndicator;
+    public GameObject taxiPrefab;
     [Header("Readonly")]
     public GUI gui;
     public CameraController camController;
@@ -43,6 +44,8 @@ public class GameplayManager : MonoBehaviour
             currentlyActiveRequests[i].requestIndicatorInstance.SetActive(false);
         }
 
+        fromBuilding.referencedStreet.PlaceVehicleRelativeToBuilding(taxiPrefab, fromBuilding.transform.position);
+        
         isSelectingBuilding = true;
     }
 
