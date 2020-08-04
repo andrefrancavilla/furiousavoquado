@@ -32,6 +32,7 @@ Transform:
   m_LocalScale: {x: 1.835503, y: 1.9718612, z: 1.835503}
   m_Children:
   - {fileID: 8458121780236010337}
+  - {fileID: 3528789604438776141}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,12 +113,44 @@ MonoBehaviour:
   buildingId: 0
   orientation: 0
   requestIconPosition: {fileID: 8458121780236010337}
+  pedestrianSpawnPosition: {fileID: 3528789604438776141}
   requestingTaxi: 0
   mustDriveTowards: 0
   buildingIdToDriveTowards: 0
   buildingSelected: 0
   requestIndicatorInstance: {fileID: 0}
   driveTowardsIndicatorInstance: {fileID: 0}
+  referencedStreet: {fileID: 0}
+--- !u!1 &2049593438344744118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3528789604438776141}
+  m_Layer: 0
+  m_Name: Pedestrian Spawn Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3528789604438776141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049593438344744118}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.334, z: 0.534}
+  m_LocalScale: {x: 1.5, y: 1.37567, z: 1.5}
+  m_Children: []
+  m_Father: {fileID: 979834757492805080}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8129485045623367268
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8129485045623367268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.766, y: 0.253, z: 0.074}
+  m_LocalPosition: {x: -0.365, y: 0.253, z: 0.518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 979834757492805080}

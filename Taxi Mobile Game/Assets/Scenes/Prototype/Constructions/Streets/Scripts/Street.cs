@@ -13,12 +13,12 @@ public class Street : MonoBehaviour
     {
     }
 
-    public void PlaceVehicleRelativeToBuilding(GameObject vehiclePrefab, Vector3 buildingCoordinates)
+    public GameObject PlaceVehicleRelativeToBuilding(GameObject vehiclePrefab, Vector3 buildingCoordinates)
     {
         StreetLane lane = transform.InverseTransformPoint(buildingCoordinates).x > 0 ? StreetLane.Right : StreetLane.Left;
         
         _laneStep = transform.localScale.x / 8;
-        _vehicleInstance = Instantiate(vehiclePrefab, transform.TransformPoint(new Vector3((int) lane * _laneStep, 0)), transform.localRotation);
+        _vehicleInstance = Instantiate(vehiclePrefab, transform.TransformPoint(new Vector3((int) lane * _laneStep, 3)), transform.localRotation);
         
         if (Math.Abs(transform.rotation.y) > 0.1f)
         {
@@ -28,6 +28,8 @@ public class Street : MonoBehaviour
         {
             _vehicleInstance.transform.position = new Vector3(_vehicleInstance.transform.position.x, _vehicleInstance.transform.position.y, buildingCoordinates.z);
         }
+
+        return _vehicleInstance;
     }
 }
 

@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
                                 {
                                     if (_hit.transform.GetComponent<Building>().mustDriveTowards)
                                     {
-                                        BuildingManager.gameplayManager.DropOffPassenger(_hit.transform.GetComponent<Building>());
+                                        BuildingManager.gameplayManager.EndPassengerRequest(_hit.transform.GetComponent<Building>());
                                     }
                                 }
                             }

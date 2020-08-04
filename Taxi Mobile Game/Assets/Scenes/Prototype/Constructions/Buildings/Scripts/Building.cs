@@ -11,6 +11,7 @@ public class Building : MonoBehaviour
     [Header("Configuration")]
     public BuildingOrientation orientation;
     public Transform requestIconPosition;
+    public Transform pedestrianSpawnPosition;
     
     [Header("Readonly")]
     public bool requestingTaxi;
@@ -72,19 +73,13 @@ public class Building : MonoBehaviour
             _streetFinderRayOrigin += _streetFinderStepDirection;
 
         } while (referencedStreet == null);
-
-        /*if (_referencedStreet)
-        {
-            Debug.Log("Found street correctly!");
-            _referencedStreet.PlaceVehicleRelativeToBuilding(_referencedStreet.testVehicle, transform.position);
-        }*/
     }
 
     public void RequestTaxi()
     {
         buildingSelected = true;
         requestingTaxi = true;
-        buildingIdToDriveTowards = BuildingManager.GetBuildingIdToBringTaxiAt(buildingId);
+        buildingIdToDriveTowards = BuildingManager.GetPassengerDestinationBuildingId(buildingId);
         BuildingManager.GetBuildingById(buildingIdToDriveTowards).SetAsDestination();
         BuildingManager.gameplayManager.AddActiveRequest(this, requestIconPosition.position);
     }

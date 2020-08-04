@@ -21,7 +21,7 @@ public static class BuildingManager
         return lastBuildingID;
     }
 
-    public static int GetBuildingIdToBringTaxiAt(int buildingThatIsRequestingId)
+    public static int GetPassengerDestinationBuildingId(int buildingThatIsRequestingId)
     {
         int randomId = 0;
 
