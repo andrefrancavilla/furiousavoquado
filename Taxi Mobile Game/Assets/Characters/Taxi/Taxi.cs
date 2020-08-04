@@ -13,12 +13,9 @@ public class Taxi : MonoBehaviour
         _anim = GetComponent<Animator>();
     }
 
-    public void FadeAway() //Called by passenger when he reaches destination
+    public void FadeAway()
     {
         _anim.SetTrigger("FadeAway");
-        
-        if(callingPassenger)
-            BuildingManager.gameplayManager.SetPassengerDestination();
     }
     
     #region Animation Events
@@ -36,6 +33,8 @@ public class Taxi : MonoBehaviour
 
     public void EndFade() //Animation event called after taxi fades away
     {
+        if(!callingPassenger)
+            BuildingManager.gameplayManager.ShowRequests();
         Destroy(gameObject);
     }
     #endregion

@@ -21,27 +21,27 @@
             </e>
           </e>
           <e p="Taxi" t="Include">
+            <e p="Scenes" t="Include">
+              <e p="Prototype" t="Include">
+                <e p="Constructions" t="Include">
+                  <e p="Buildings" t="Include">
+                    <e p="Scripts" t="Include">
+                      <e p="Building.cs" t="Include" />
+                      <e p="BuildingManager.cs" t="Include" />
+                    </e>
+                  </e>
+                  <e p="Streets" t="Include">
+                    <e p="Scripts" t="Include">
+                      <e p="Street.cs" t="Include" />
+                    </e>
+                  </e>
+                </e>
+                <e p="Scripts" t="Include">
+                  <e p="GameplayManager.cs" t="Include" />
+                </e>
+              </e>
+            </e>
             <e p="Taxi.cs" t="Include" />
-          </e>
-        </e>
-        <e p="Scenes" t="Include">
-          <e p="Prototype" t="Include">
-            <e p="Constructions" t="Include">
-              <e p="Buildings" t="Include">
-                <e p="Scripts" t="Include">
-                  <e p="Building.cs" t="Include" />
-                  <e p="BuildingManager.cs" t="Include" />
-                </e>
-              </e>
-              <e p="Streets" t="Include">
-                <e p="Scripts" t="Include">
-                  <e p="Street.cs" t="Include" />
-                </e>
-              </e>
-            </e>
-            <e p="Scripts" t="Include">
-              <e p="GameplayManager.cs" t="Include" />
-            </e>
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">

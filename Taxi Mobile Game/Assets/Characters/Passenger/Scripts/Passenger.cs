@@ -20,8 +20,13 @@ public class Passenger : MonoBehaviour
             if (Vector3.Distance(transform.position, _walkToTarget.position) < distToFade)
             {
                 //When passenger reaches destination
-                _taxi.FadeAway();
-                Destroy(gameObject); //Must replace with fade
+                if (_taxi.transform.position == _walkToTarget.position)
+                    BuildingManager.gameplayManager.SetPassengerDestination();
+                else
+                {
+                    _taxi.FadeAway();
+                }
+                Destroy(gameObject);
             }
         }
     }
