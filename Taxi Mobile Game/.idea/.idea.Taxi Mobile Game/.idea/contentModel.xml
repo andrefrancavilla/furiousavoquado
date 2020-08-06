@@ -4,9 +4,17 @@
     <e p="C:\Users\Andre\.Rider2019.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Andre\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Taxi Mobile Game.1618460379.00" t="ExcludeRecursive" />
     <e p="G:\MEGA\MySync\Fiverr\Fix &amp; Code Gig\Work\Furiousavoquado\Unity Projects\Furiousavoquado\Taxi Mobile Game" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Characters" t="Include">
+          <e p="Generic Vehicle" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Crossroad.cs" t="Include" />
+              <e p="Vehicle.cs" t="Include" />
+              <e p="VehicleSpawner.cs" t="Include" />
+            </e>
+          </e>
           <e p="Passenger" t="Include">
             <e p="Scripts" t="Include">
               <e p="Passenger.cs" t="Include" />
@@ -43,6 +51,13 @@
             </e>
             <e p="Taxi.cs" t="Include" />
           </e>
+        </e>
+        <e p="SimplestMeshBaker" t="Include">
+          <e p="Editor" t="Include">
+            <e p="BonesBaker.cs" t="Include" />
+            <e p="MeshBaker.cs" t="Include" />
+          </e>
+          <e p="Readme.txt" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">

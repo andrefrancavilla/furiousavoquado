@@ -52,7 +52,7 @@ public class GameplayManager : MonoBehaviour
         }
         
         //Spawn taxi and passenger
-        _taxiInstance = fromBuilding.referencedStreet.PlaceVehicleRelativeToBuilding(taxiPrefab, _originBuilding.transform.position);
+        _taxiInstance = fromBuilding.referencedStreet.PlaceVehicle(taxiPrefab, _originBuilding.transform.position);
         _taxiInstance.GetComponent<Taxi>().callingPassenger = true;
 
         _passengerInstance = Instantiate(passengerPrefab, _originBuilding.pedestrianSpawnPosition.position, _originBuilding.pedestrianSpawnPosition.rotation).GetComponent<Passenger>();
@@ -88,7 +88,7 @@ public class GameplayManager : MonoBehaviour
         _destinationBuilding.mustDriveTowards = false;
         
         _taxiInstance.GetComponent<Taxi>().FadeAway(); //Fade taxi that is in _originBuilding position
-        _taxiInstance = toBuilding.referencedStreet.PlaceVehicleRelativeToBuilding(taxiPrefab, _destinationBuilding.transform.position); //Place taxi at new building
+        _taxiInstance = toBuilding.referencedStreet.PlaceVehicle(taxiPrefab, _destinationBuilding.transform.position); //Place taxi at new building
         
         currentlyActiveRequests.Remove(_originBuilding);
         
