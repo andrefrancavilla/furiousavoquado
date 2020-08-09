@@ -163,7 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  steerSpeed: 0.05
+  steerSpeed: 0.066
+  targetRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &8005206821804331022
 BoxCollider:
   m_ObjectHideFlags: 0

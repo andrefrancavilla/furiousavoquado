@@ -8,16 +8,15 @@ public class Vehicle : MonoBehaviour
 {
     public float moveSpeed;
     public float steerSpeed;
+    public Vector3 targetRotation;
     private Vector3 _localMovement;    
     private Vector3 _globalMovement;
     private Crossroad _currentCrossroad;
-    private int _dirToSteerTowards; //0 = straight, 1 = left, 2 = right
-    private bool _foundNewDirection;
-    private Vector3 _targetRotation;
+    private bool _collided;
 
     private void Start()
     {
-        _targetRotation = transform.eulerAngles;
+        targetRotation = transform.eulerAngles;
     }
 
     // Update is called once per frame
@@ -31,43 +30,23 @@ public class Vehicle : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(_targetRotation), steerSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRotation), steerSpeed);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_collided) return;
+        _collided = true;
+
         _currentCrossroad = other.GetComponent<Crossroad>();
         if (_currentCrossroad)
         {
-            do
-            {
-                _dirToSteerTowards = Random.Range(0, 3); //with integers max is exclusive
-                switch (_dirToSteerTowards)
-                {
-                    case 0:
-                        if (_currentCrossroad.forwards)
-                        {
-                            //Do not change rotation
-                            _foundNewDirection = true;
-                        }
-                        break;
-                    case 1:
-                        if (_currentCrossroad.left)
-                        {
-                            _targetRotation = new Vector3(transform.eulerAngles.x, _currentCrossroad.transform.eulerAngles.y - 90);
-                            _foundNewDirection = true;
-                        }
-                        break;
-                    case 2:
-                        if (_currentCrossroad.right)
-                        {
-                            _targetRotation = new Vector3(transform.eulerAngles.x, _currentCrossroad.transform.eulerAngles.y + 90);
-                            _foundNewDirection = true;
-                        }
-                        break;
-                }
-            } while (!_foundNewDirection);
-
+            targetRotation = _currentCrossroad.GetRotation(transform.position, transform.eulerAngles);
         }
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        _collided = false;
     }
 }

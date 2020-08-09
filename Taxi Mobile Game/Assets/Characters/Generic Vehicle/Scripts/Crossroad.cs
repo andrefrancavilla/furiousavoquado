@@ -9,41 +9,53 @@ public class Crossroad : MonoBehaviour
     public bool forwards; // 0
     public bool left; // 1
     public bool right; // 2
+    public List<int> possibleDirections = new List<int>();
 
-    private Vector3 _relativePosition;
+    public Vector3 relativePosition;
     private Vector3 _vehichleNewRot;
-    private List<int> _possibleDirections = new List<int>();
+    private int _rndDir;
+
+    void Start()
+    {
+        //Gather possible directions
+        if (backwards)
+            possibleDirections.Add(-1);
+        if (forwards)
+            possibleDirections.Add(0);
+        if (left)
+            possibleDirections.Add(1);
+        if (right)
+            possibleDirections.Add(2);
+    }
 
     public Vector3 GetRotation(Vector3 vehiclePosition, Vector3 vehicleEulerAngles)
     {
-        _possibleDirections.Clear();
         _vehichleNewRot = vehicleEulerAngles;
-        _relativePosition = transform.TransformPoint(vehiclePosition);
-
-        //Gather possible directions
-        if(backwards)
-            _possibleDirections.Add(-1);
-        if(forwards)
-            _possibleDirections.Add(0);
-        if(left)
-            _possibleDirections.Add(1);
-        if(right)
-            _possibleDirections.Add(2);
+        relativePosition = transform.InverseTransformPoint(vehiclePosition);
+        Debug.Log("Relative position is: " + relativePosition);
         
-        if (Mathf.Abs(_relativePosition.x) > 0.75f)
+        if (Mathf.Abs(relativePosition.x) > Mathf.Abs(relativePosition.z))
         {
-            //Vehicle is coming from above or below
-            if (_relativePosition.x > 0) //Below
+            //Vehicle is coming from Right or Left
+            if (relativePosition.x > 0) //Right
             {
-                switch (_possibleDirections[Random.Range(0, _possibleDirections.Count)])
+                Debug.Log("Vehicle came from the right of the crossroad.");
+                do
+                {
+                    _rndDir = possibleDirections[Random.Range(0, possibleDirections.Count)];
+                } while (_rndDir == 2);
+
+                switch (_rndDir)
                 {
                     case  -1:
                         //Left for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y - 90, vehicleEulerAngles.z);
+                        Debug.Log("Turn left!");
                         break;
                     case 0:
                         //Right for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 90, vehicleEulerAngles.z);
+                        Debug.Log("Turn right!");
                         break;
                     case 1:
                         //Straight for vehicle
@@ -55,17 +67,25 @@ public class Crossroad : MonoBehaviour
                         break;
                 }
             }
-            else //above
+            else //Left
             {
-                switch (_possibleDirections[Random.Range(0, _possibleDirections.Count)])
+                Debug.Log("Vehicle came from the left of the crossroad.");
+                do
+                {
+                    _rndDir = possibleDirections[Random.Range(0, possibleDirections.Count)];
+                } while (_rndDir == 2);
+
+                switch (_rndDir)
                 {
                     case  -1:
                         //Right for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 90, vehicleEulerAngles.z);
+                        Debug.Log("Turn right!");
                         break;
                     case 0:
                         //Left for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y - 90, vehicleEulerAngles.z);
+                        Debug.Log("Turn left!");
                         break;
                     case 1:
                         //Straight for vehicle
@@ -80,35 +100,65 @@ public class Crossroad : MonoBehaviour
         }
         else
         {
-            if (Mathf.Abs(_relativePosition.z) > 0.75f)
+            //Vehicle is coming from behind or up front
+            if (relativePosition.z > 0)
             {
-                //Vehicle is coming from behind or up front
-                if (_relativePosition.z > 0)
+                do
                 {
-                    //Up front
+                    _rndDir = possibleDirections[Random.Range(0, possibleDirections.Count)];
+                } while (_rndDir == 0);
+                Debug.Log("Vehicle came from the front of the crossroad.");
+                //Up front
+                switch (_rndDir)
+                {
+                    case -1:
+                        //Straight for vehicle
+                        //Do nothing
+                        break;
+                    case 0:
+                        //U turn for vehicle
+                        _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 180, vehicleEulerAngles.z);
+                        break;
+                    case 1:
+                        //Right for vehicle
+                        _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 90, vehicleEulerAngles.z);
+                        Debug.Log("Turn right!");
+                        break;
+                    case 2:
+                        //Left for vehicle
+                        _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y - 90, vehicleEulerAngles.z);
+                        Debug.Log("Turn left!");
+                        break;
                 }
-                else
+            }
+            else
+            {
+                do
                 {
-                    //Behind
-                    switch (_possibleDirections[Random.Range(0, _possibleDirections.Count)])
-                    {
-                        case  -1:
-                            //U turn for vehicle
-                            _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 180, vehicleEulerAngles.z);
-                            break;
-                        case 0:
-                            //Straight for vehicle
-                            //Do nothing
-                            break;
-                        case 1:
-                            //Left for vehicle
-                            _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y - 90, vehicleEulerAngles.z);
-                            break;
-                        case 2:
-                            //Right for vehicle
-                            _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 90, vehicleEulerAngles.z);
-                            break;
-                    }
+                    _rndDir = possibleDirections[Random.Range(0, possibleDirections.Count)];
+                } while (_rndDir == -1);
+                Debug.Log("Vehicle came from the back of the crossroad.");
+                //Behind
+                switch (_rndDir)
+                {
+                    case  -1:
+                        //U turn for vehicle
+                        _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 180, vehicleEulerAngles.z);
+                        break;
+                    case 0:
+                        //Straight for vehicle
+                        //Do nothing
+                        break;
+                    case 1:
+                        //Left for vehicle
+                        _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y - 90, vehicleEulerAngles.z);
+                        Debug.Log("Turn left!");
+                        break;
+                    case 2:
+                        //Right for vehicle
+                        _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 90, vehicleEulerAngles.z);
+                        Debug.Log("Turn right!");
+                        break;
                 }
             }
         }
