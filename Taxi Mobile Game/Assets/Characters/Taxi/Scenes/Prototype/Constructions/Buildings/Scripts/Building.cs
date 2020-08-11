@@ -57,7 +57,7 @@ public class Building : MonoBehaviour
         {
             if (Vector3.Distance(new Vector3(transform.position.x, _streetFinderRayOrigin.y, transform.position.z), _streetFinderRayOrigin) > 100) //Avoid infinite loop
             {
-                Debug.LogError($"ERROR! Did not find any street in proximity of building {gameObject.name} in coordinates {transform.position}. Skipping assignment - other errors may occur.");
+                Debug.LogError($"ERROR! Did not find any street in proximity of building {gameObject.name} in coordinates {transform.position}. Building rotation might be incorrect. Skipping assignment - other errors may occur.");
                 break;
             }
             

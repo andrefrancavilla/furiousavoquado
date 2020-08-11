@@ -9,10 +9,6 @@ public class Street : MonoBehaviour
     private float _laneStep; //Distance from center of street to center of right or left lane
     private GameObject _vehicleInstance;
 
-    private void Start()
-    {
-    }
-
     public GameObject PlaceVehicle(GameObject vehiclePrefab, Vector3 buildingCoordinates)
     {
         StreetLane lane = transform.InverseTransformPoint(buildingCoordinates).x > 0 ? StreetLane.Right : StreetLane.Left;

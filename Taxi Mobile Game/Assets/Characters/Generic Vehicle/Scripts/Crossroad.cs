@@ -32,14 +32,12 @@ public class Crossroad : MonoBehaviour
     {
         _vehichleNewRot = vehicleEulerAngles;
         relativePosition = transform.InverseTransformPoint(vehiclePosition);
-        Debug.Log("Relative position is: " + relativePosition);
         
         if (Mathf.Abs(relativePosition.x) > Mathf.Abs(relativePosition.z))
         {
             //Vehicle is coming from Right or Left
             if (relativePosition.x > 0) //Right
             {
-                Debug.Log("Vehicle came from the right of the crossroad.");
                 do
                 {
                     _rndDir = possibleDirections[Random.Range(0, possibleDirections.Count)];
@@ -50,12 +48,10 @@ public class Crossroad : MonoBehaviour
                     case  -1:
                         //Left for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y - 90, vehicleEulerAngles.z);
-                        Debug.Log("Turn left!");
                         break;
                     case 0:
                         //Right for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 90, vehicleEulerAngles.z);
-                        Debug.Log("Turn right!");
                         break;
                     case 1:
                         //Straight for vehicle
@@ -69,31 +65,28 @@ public class Crossroad : MonoBehaviour
             }
             else //Left
             {
-                Debug.Log("Vehicle came from the left of the crossroad.");
                 do
                 {
                     _rndDir = possibleDirections[Random.Range(0, possibleDirections.Count)];
-                } while (_rndDir == 2);
+                } while (_rndDir == 1);
 
                 switch (_rndDir)
                 {
                     case  -1:
                         //Right for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 90, vehicleEulerAngles.z);
-                        Debug.Log("Turn right!");
                         break;
                     case 0:
                         //Left for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y - 90, vehicleEulerAngles.z);
-                        Debug.Log("Turn left!");
                         break;
                     case 1:
-                        //Straight for vehicle
-                        //Do nothing
-                        break;
-                    case 2:
                         //U turn for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 180, vehicleEulerAngles.z);
+                        break;
+                    case 2:
+                        //Straight for vehicle
+                        //Do nothing
                         break;
                 }
             }
@@ -107,7 +100,6 @@ public class Crossroad : MonoBehaviour
                 {
                     _rndDir = possibleDirections[Random.Range(0, possibleDirections.Count)];
                 } while (_rndDir == 0);
-                Debug.Log("Vehicle came from the front of the crossroad.");
                 //Up front
                 switch (_rndDir)
                 {
@@ -122,12 +114,10 @@ public class Crossroad : MonoBehaviour
                     case 1:
                         //Right for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 90, vehicleEulerAngles.z);
-                        Debug.Log("Turn right!");
                         break;
                     case 2:
                         //Left for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y - 90, vehicleEulerAngles.z);
-                        Debug.Log("Turn left!");
                         break;
                 }
             }
@@ -137,7 +127,6 @@ public class Crossroad : MonoBehaviour
                 {
                     _rndDir = possibleDirections[Random.Range(0, possibleDirections.Count)];
                 } while (_rndDir == -1);
-                Debug.Log("Vehicle came from the back of the crossroad.");
                 //Behind
                 switch (_rndDir)
                 {
@@ -152,12 +141,10 @@ public class Crossroad : MonoBehaviour
                     case 1:
                         //Left for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y - 90, vehicleEulerAngles.z);
-                        Debug.Log("Turn left!");
                         break;
                     case 2:
                         //Right for vehicle
                         _vehichleNewRot = new Vector3(vehicleEulerAngles.x, vehicleEulerAngles.y + 90, vehicleEulerAngles.z);
-                        Debug.Log("Turn right!");
                         break;
                 }
             }
